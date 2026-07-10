@@ -11,7 +11,7 @@ A fast, automated tool to generate fresh accounts for that one tactical shooter 
 
 If you just want to get moving without messing around with source code:
 
-1. Head over to the Releases Page: https://github.com/fiukdsbfksdfd/val-account-gen/releases
+1. Head over to the Releases Page: https://github.com/fiukdsbfksdfd/val-account-gen/releases DONT USE WARP OR VPN OR SMAILPRO NEEDS CAPTCHA (or maybe ur ip js flagged idk)
 2. Download the latest compiled .exe
 3. Run it and start generating
 
