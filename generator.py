@@ -78,9 +78,11 @@ class AccountGenerator:
     def __init__(
         self,
         progress: Optional[ProgressCallback] = None,
+        notify: Optional[Callable[[str, str], None]] = None,
         headless: bool = False,
     ) -> None:
         self.progress = progress or _log_default
+        self._notify = notify or (lambda t, y: None)
         self.headless = headless
         self.page: Optional[ChromiumPage] = None
         self._valorant_tab = None
@@ -397,8 +399,21 @@ class AccountGenerator:
             self._smail_tab = self._new_tab(SMAIL_URL)
             self._switch(self._smail_tab)
             time.sleep(0.05)
-            email = self._smail_get_email()
-            self._say(20, f"Using email: {email}")
+            
+            invalid_email_count = 0
+            while True:
+                email = self._smail_get_email()
+                if email.lower() == "william@gmail.com":
+                    invalid_email_count += 1
+                    if invalid_email_count >= 3:
+                        raise RuntimeError("Reopen Generator")
+                    self._notify("Invalid Email, Refreshing", "error")
+                    time.sleep(5)
+                    self._smail_tab.get(SMAIL_URL)
+                    time.sleep(2)
+                    continue
+                self._say(20, f"Using email: {email}")
+                break
 
             self._say(25, "Opening Valorant signup page…")
             self._valorant_tab = self._new_tab(VALORANT_SIGNUP_URL)
@@ -434,6 +449,7 @@ class GeneratorWorker(QThread):
     progress = pyqtSignal(int, str)
     finished_ok = pyqtSignal(str)
     failed = pyqtSignal(str)
+    notify = pyqtSignal(str, str)
 
     def __init__(self, headless: bool = False, parent=None) -> None:
         super().__init__(parent)
@@ -442,8 +458,10 @@ class GeneratorWorker(QThread):
     def run(self) -> None:
         def cb(pct: int, msg: str) -> None:
             self.progress.emit(pct, msg)
+        def notify_cb(text: str, ntype: str) -> None:
+            self.notify.emit(text, ntype)
         try:
-            gen = AccountGenerator(progress=cb, headless=self.headless)
+            gen = AccountGenerator(progress=cb, notify=notify_cb, headless=self.headless)
             account = gen.run()
             self.finished_ok.emit(account.as_line())
         except TwoFATimeoutError:
@@ -661,7 +679,7 @@ class MainWindow(QWidget):
         text_container = QHBoxLayout()
         text_container.setSpacing(0)
 
-        branding = QLabel("Rito Accs")
+        branding = QLabel("Accounts")
         branding.setFont(QFont("Segoe UI", 13, QFont.Bold))
         branding.setAlignment(Qt.AlignLeft)
         branding.setStyleSheet("color: #6A6A75;")
@@ -722,7 +740,7 @@ class MainWindow(QWidget):
         self.account_container.hide()
         layout.addWidget(self.account_container)
 
-        self.btn_generate = QPushButton("Generate New")
+        self.btn_generate = QPushButton("Generate")
         self.btn_generate.setObjectName("generate")
         self.btn_generate.setFixedHeight(40)
         self.btn_generate.setCursor(Qt.PointingHandCursor)
@@ -740,7 +758,7 @@ class MainWindow(QWidget):
         social_layout = QHBoxLayout()
         social_layout.setSpacing(8)
         
-        self.btn_discord = QPushButton("Discord")
+        self.btn_discord = QPushButton(" Discord")
         self.btn_discord.setObjectName("discord")
         self.btn_discord.setFixedHeight(36)
         self.btn_discord.setCursor(Qt.PointingHandCursor)
@@ -749,7 +767,7 @@ class MainWindow(QWidget):
         self.btn_discord.clicked.connect(lambda: self.open_url("https://discord.com/users/1368264423806074910"))
         social_layout.addWidget(self.btn_discord)
         
-        self.btn_github = QPushButton("Github")
+        self.btn_github = QPushButton(" Github")
         self.btn_github.setObjectName("github")
         self.btn_github.setFixedHeight(36)
         self.btn_github.setCursor(Qt.PointingHandCursor)
@@ -869,6 +887,7 @@ class MainWindow(QWidget):
         self.worker.progress.connect(self._on_progress)
         self.worker.finished_ok.connect(self._on_done)
         self.worker.failed.connect(self._on_failed)
+        self.worker.notify.connect(self.show_notification)
         self.worker.finished.connect(self._on_thread_finished)
         self.worker.start()
 
@@ -902,6 +921,8 @@ class MainWindow(QWidget):
         if err == "2FA_TIMEOUT":
             self._restart_needed = True
             self.show_notification("2FA timeout, restarting...", "error")
+        elif err == "Reopen Generator":
+            self.show_notification("Reopen Generator", "error")
         else:
             self.show_notification(f"Error: {err}", "error")
 
@@ -1000,8 +1021,8 @@ QPushButton#discord {
     border-radius: 8px;
     font-size: 12px;
     font-weight: 600;
-    text-align: center;
-    padding-left: 0px;
+    text-align: left;
+    padding-left: 10px;
     font-family: "Segoe UI", "SF Pro Display", sans-serif;
 }
 QPushButton#discord:hover { background-color: #4752C4; }
@@ -1012,8 +1033,8 @@ QPushButton#github {
     border-radius: 8px;
     font-size: 12px;
     font-weight: 600;
-    text-align: center;
-    padding-left: 0px;
+    text-align: left;
+    padding-left: 10px;
     font-family: "Segoe UI", "SF Pro Display", sans-serif;
 }
 QPushButton#github:hover { background-color: #1F242B; }
