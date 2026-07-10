@@ -4,6 +4,9 @@ A fast, automated tool to generate fresh accounts for that one tactical shooter 
 
 ---
 
+![Screenshot](start.png)
+![Screenshot](generated.png)
+
 ## Quick Start (Pre-compiled Binary)
 
 If you just want to get moving without messing around with source code:
