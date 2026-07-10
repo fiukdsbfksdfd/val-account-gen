@@ -17,25 +17,8 @@ If you just want to get moving without messing around with source code:
 
 ---
 
-## Manual Setup (Running from Source)
-
-If you prefer running the raw script or want to modify the code, follow these steps to get everything up and running.
-
-### Prerequisites
-* Python 3.11 (Make sure to check "Add Python to PATH" during installation)
-
-### Installation & Execution
-
-1. Clone the Repository:
-   git clone https://github.com/fiukdsbfksdfd/val-account-gen.git
-   cd val-account-gen
-
-2. Install Dependencies:
-   Look, you know how this works. Figure it out :D
-
-3. Run the Generator:
-   Wow, look at that. So incredibly complicated:
-   python main.py
+## Disclaimer
+> I didn't give source for 1 reason, its DOGSHIT, like if you want to check for rats or whatever triage, virustotal, debugger, its just nuitka compile currently! (but at least nuitka compiled code doesnt look as bad)
 
 ---
 
