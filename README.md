@@ -20,11 +20,6 @@ If you just want to get moving without messing around with source code:
 
 ---
 
-## Disclaimer
-> I didn't give source for 1 reason, its DOGSHIT, like if you want to check for rats or whatever triage, virustotal, debugger, its just nuitka compile currently! (but at least nuitka compiled code doesnt look as bad)
-
----
-
 ## Credits & Disclaimers
 
 * Let's be real—about 90% of this codebase was written by my lord and savior GLM 5.2. 
