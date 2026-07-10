@@ -15,9 +15,7 @@ If you just want to get moving without messing around with source code:
 2. Download the latest compiled .exe
 3. Run it and start generating
 
-> **Improvement Needed:** 
-> If anyone out there knows a magical way to compile Python into a single executable (onefile) without it turning into a massive, heavy file, please slide into my Discord DMs and save my storage space.
-
+> If your getting errors or its just not working, its probably because smailpro requires your ip to have a captcha DONT USE WARP OR A VPN
 ---
 
 ## Credits & Disclaimers
