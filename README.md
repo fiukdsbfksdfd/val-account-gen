@@ -1,12 +1,10 @@
-thanks gemini for the readme 
+# Account Generator
 
-# val-account-gen
-
-A fast, automated tool to generate fresh accounts for that one tactical shooter made by a company that rhymes with *Balorant* (you know, the one without a fist as their icon and has *toir* buried in the name). 
+A fast, automated tool to generate fresh accounts for that one tactical shooter made by a company that rhymes with *Balorant*. 
 
 ---
 
-## Quick Start (The Fast Way)
+## Quick Start (Pre-compiled Binary)
 
 If you just want to get moving without messing around with source code:
 
@@ -14,7 +12,7 @@ If you just want to get moving without messing around with source code:
 2. Download the latest compiled .exe
 3. Run it and start generating
 
-> **Dev Note / Discord Callout:** 
+> **Improvement Needed:** 
 > If anyone out there knows a magical way to compile Python into a single executable (onefile) without it turning into a massive, heavy file, please slide into my Discord DMs and save my storage space.
 
 ---
@@ -33,8 +31,7 @@ If you prefer running the raw script or want to modify the code, follow these st
    cd val-account-gen
 
 2. Install Dependencies:
-   Look, you know how this works. Figure it out or just run the standard command:
-   pip install -r requirements.txt
+   Look, you know how this works. Figure it out :D
 
 3. Run the Generator:
    Wow, look at that. So incredibly complicated:
@@ -44,12 +41,8 @@ If you prefer running the raw script or want to modify the code, follow these st
 
 ## Credits & Disclaimers
 
-* Code Attribution: Let's be real—about 90% of this codebase was written by my lord and savior GLM 5.2. 
-* Skid Warning: If you are going to spoon, fork, or straight-up skid this project, please have some decency and keep the credits intact. Don't be that person.
+* Let's be real—about 90% of this codebase was written by my lord and savior GLM 5.2. 
+* If you are going to fork or skid this project, please have some decency and keep the credits intact. 
 
 ---
 
-## Features
-* Fast, automated account generation flow.
-* Easy-to-use executable for non-technical users.
-* Clean and straightforward setup from source.
