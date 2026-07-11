@@ -10,6 +10,8 @@ A fast, automated tool to generate fresh accounts for that one tactical shooter 
 ## Quick Start (Pre-compiled Binary)
 
 If you just want to get moving without messing around with source code:
+   
+You need chrome installed fyi
 
 1. Head over to the Releases Page: https://github.com/fiukdsbfksdfd/val-account-gen/releases DONT USE WARP OR VPN OR SMAILPRO NEEDS CAPTCHA (or maybe ur ip js flagged idk)
 2. Download the latest compiled .exe
