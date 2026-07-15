@@ -29,7 +29,7 @@ If you don't want to build from source, simply download the latest release.
 ## Downloads
 
 ### Latest Release
-[Click Me](https://github.com/<OWNER>/<REPO>/releases/latest)
+[Click Me](https://github.com/fiukdsbfksdfd/val-account-gen/releases/latest)
 
 ### Chrome
 [Click Me](https://www.google.com/chrome/dr/download/)
